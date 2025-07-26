@@ -57,12 +57,22 @@ if [[ "$MISE_AVAILABLE" == "true" ]]; then
     print_color "$GREEN" "1. Mise (Recommended by Tuist team)"
     echo "   - Deterministic tool versions"
     echo "   - Team-friendly version management"
+else
+    print_color "$YELLOW" "1. Mise (Recommended by Tuist team) - Not installed"
+    echo "   - Deterministic tool versions"
+    echo "   - Team-friendly version management"
+    print_color "$BLUE" "   💡 To install Mise first, Visit: https://mise.jdx.dev/getting-started"
 fi
 
 if [[ "$HOMEBREW_AVAILABLE" == "true" ]]; then
     print_color "$GREEN" "2. Homebrew"
     echo "   - Simple and widely used"
     echo "   - System-wide installation"
+else
+    print_color "$YELLOW" "2. Homebrew - Not installed"
+    echo "   - Simple and widely used"
+    echo "   - System-wide installation"
+    print_color "$BLUE" "   💡 To install Homebrew first, Visit: https://brew.sh/"
 fi
 
 print_color "$GREEN" "3. Official installer script"

@@ -291,7 +291,7 @@ if [[ "$SKIP_TUIST_GENERATE" == "true" ]]; then
     echo ""
     echo "1. cd $(pwd)"
     print_color "$YELLOW" "2. Install Tuist (if not already done):"
-    print_color "$BLUE" "   curl -Ls https://install.tuist.io | bash"
+    print_color "$BLUE" "   Visit: https://docs.tuist.dev/en/guides/quick-start/install-tuist"
     print_color "$YELLOW" "3. Restart your terminal or run: source ~/.zshrc"
     print_color "$YELLOW" "4. Generate Xcode project:"
     print_color "$BLUE" "   tuist generate"
