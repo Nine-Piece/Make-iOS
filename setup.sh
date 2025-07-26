@@ -39,6 +39,44 @@ print_header "iOS Template Generator by Nine Piece"
 print_color "$GREEN" "This tool helps you create new iOS apps using Tuist."
 echo ""
 
+# Check if Tuist is installed
+print_color "$YELLOW" "Checking prerequisites..."
+if ! command -v tuist &> /dev/null; then
+    print_color "$RED" "❌ Tuist is not installed!"
+    echo ""
+    print_color "$BLUE" "📱 Don't worry! Your iOS project will be created successfully."
+    print_color "$BLUE" "   You just need to install Tuist afterwards to open it in Xcode."
+    echo ""
+    print_color "$YELLOW" "Would you like to install Tuist automatically? (recommended)"
+    read -p "Install Tuist now? (y/n): " INSTALL_TUIST
+    
+    if [[ "$INSTALL_TUIST" == "y" || "$INSTALL_TUIST" == "Y" ]]; then
+        # Run the dedicated Tuist installer script
+        if "$SCRIPT_DIR/scripts/install_tuist.sh"; then
+            # Check if tuist is now available
+            if command -v tuist &> /dev/null; then
+                print_color "$GREEN" "🎉 Tuist is ready! Will generate Xcode project."
+                SKIP_TUIST_GENERATE=false
+            else
+                print_color "$YELLOW" "⚠️  Tuist installed but needs terminal restart."
+                print_color "$YELLOW" "   Project files will be created. Run 'tuist generate' after restart."
+                SKIP_TUIST_GENERATE=true
+            fi
+        else
+            print_color "$RED" "❌ Tuist installation failed."
+            print_color "$YELLOW" "Will create project files. You can install Tuist manually later."
+            SKIP_TUIST_GENERATE=true
+        fi
+    else
+        print_color "$BLUE" "📁 Creating project files only. You can install Tuist later."
+        SKIP_TUIST_GENERATE=true
+    fi
+else
+    print_color "$GREEN" "✅ Tuist is installed"
+    SKIP_TUIST_GENERATE=false
+fi
+echo ""
+
 # App name input
 if [[ -n "$AUTO_PROJECT_NAME" ]]; then
     APP_NAME="$AUTO_PROJECT_NAME"
@@ -235,20 +273,57 @@ git init
 git add .
 git commit -m "Initial commit: $APP_NAME iOS app"
 
-# Generate Tuist project
-print_color "$GREEN" "Generating Xcode project with Tuist..."
-tuist generate
+# Generate Tuist project (if Tuist is available)
+if [[ "$SKIP_TUIST_GENERATE" == "false" ]]; then
+    print_color "$GREEN" "Generating Xcode project with Tuist..."
+    tuist generate
+else
+    print_color "$YELLOW" "Skipping Xcode project generation (Tuist not available)"
+fi
 
 print_header "Setup Complete!"
 print_color "$GREEN" "'$APP_NAME' iOS app has been successfully created!"
 echo ""
 echo "Project location: $(pwd)"
 echo ""
-echo "Next steps:"
-echo "1. cd $(pwd)"
-echo "2. tuist generate"
-echo "3. open ${APP_NAME}.xcworkspace"
-echo "4. Select ${APP_NAME}-Dev scheme for development"
-echo "5. Select ${APP_NAME} scheme for production"
+if [[ "$SKIP_TUIST_GENERATE" == "true" ]]; then
+    print_color "$BLUE" "📋 To open your project in Xcode, follow these steps:"
+    echo ""
+    echo "1. cd $(pwd)"
+    print_color "$YELLOW" "2. Install Tuist (if not already done):"
+    print_color "$BLUE" "   curl -Ls https://install.tuist.io | bash"
+    print_color "$YELLOW" "3. Restart your terminal or run: source ~/.zshrc"
+    print_color "$YELLOW" "4. Generate Xcode project:"
+    print_color "$BLUE" "   tuist generate"
+    print_color "$YELLOW" "5. Open in Xcode:"
+    print_color "$BLUE" "   open ${APP_NAME}.xcworkspace"
+    echo ""
+    print_color "$GREEN" "🎯 Development Tips:"
+    echo "   • Use ${APP_NAME}-Dev scheme for development (includes .dev suffix)"
+    echo "   • Use ${APP_NAME} scheme for production builds"
+    echo "   • Your SPM packages are already configured in Project.swift"
+    echo ""
+    print_color "$BLUE" "💡 Why Tuist?"
+    echo "   • Manages complex iOS project configurations"
+    echo "   • Handles SPM dependencies automatically"
+    echo "   • Provides clean project structure"
+    echo "   • Supports multiple build configurations"
+else
+    print_color "$BLUE" "📋 Your project is ready! Next steps:"
+    echo ""
+    echo "1. cd $(pwd)"
+    print_color "$YELLOW" "2. Open in Xcode:"
+    print_color "$BLUE" "   open ${APP_NAME}.xcworkspace"
+    echo ""
+    print_color "$GREEN" "🎯 Development Tips:"
+    echo "   • Use ${APP_NAME}-Dev scheme for development (includes .dev suffix)"
+    echo "   • Use ${APP_NAME} scheme for production builds"
+    echo "   • Your SPM packages are already configured and ready to use"
+    echo ""
+    print_color "$BLUE" "🔧 Additional Tuist commands:"
+    echo "   • tuist clean     - Clean build artifacts"
+    echo "   • tuist generate  - Regenerate project if needed"
+    echo "   • tuist edit      - Edit Tuist configuration"
+fi
 echo ""
 print_color "$YELLOW" "Happy coding! 🚀"

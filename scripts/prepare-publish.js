@@ -12,14 +12,48 @@ console.log('Preparing for npm publish...');
 
 // Check if all required files exist
 const requiredFiles = [
+  // Core files
   'package.json',
   'README.md',
   'README_ko.md',
   'LICENSE',
+  
+  // CLI entry point
   'bin/make-ios.js',
+  
+  // Main setup script
+  'setup.sh',
+  
+  // Scripts directory
+  'scripts/generate_project.sh',
+  'scripts/update_dependencies.sh',
+  'scripts/install_tuist.sh',
+  
+  // Templates - SwiftUI
   'templates/SwiftUI/AppDelegate.swift',
+  'templates/SwiftUI/SceneDelegate.swift',
+  'templates/SwiftUI/ContentView.swift',
+  
+  // Templates - UIKit
   'templates/UIKit/AppDelegate.swift',
-  'tuist/Project.swift'
+  'templates/UIKit/SceneDelegate.swift',
+  'templates/UIKit/ViewControllers/HomeViewController.swift',
+  'templates/UIKit/ViewControllers/MoreViewController.swift',
+  
+  // Templates - Common resources
+  'templates/common/Assets.xcassets/Contents.json',
+  'templates/common/Assets.xcassets/AppIcon.appiconset/Contents.json',
+  'templates/common/Assets.xcassets/AppIcon-Debug.appiconset/Contents.json',
+  'templates/plist/Info-Debug.plist',
+  'templates/plist/Info-Release.plist',
+  'templates/storyboard/LaunchScreen.storyboard',
+  
+  // Tuist configuration
+  'tuist/Project.swift',
+  'tuist/Tuist.swift',
+  'tuist/Tuist/Config.swift',
+  'tuist/Configurations/Debug.xcconfig',
+  'tuist/Configurations/Release.xcconfig'
 ];
 
 let hasErrors = false;
