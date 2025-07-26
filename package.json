@@ -1,6 +1,6 @@
 {
   "name": "make-ios",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create iOS apps with Tuist",
   "keywords": [
     "ios",
@@ -33,6 +33,7 @@
     "templates",
     "scripts",
     "tuist",
+    "setup.sh",
     "LICENSE",
     "README.md",
     "README_ko.md"
