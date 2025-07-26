@@ -1,0 +1,40 @@
+# Development files
+.DS_Store
+*.log
+node_modules/
+.git/
+.gitignore
+
+# Documentation
+FEATURES.md
+FEATURES_ko.md
+
+# Scripts not needed for npm
+install.sh
+quick-install.sh
+setup.sh
+
+# Test projects
+test/
+examples/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode
+*.xcworkspace
+*.xcodeproj
+build/
+DerivedData/
+
+# Generated projects (for development)
+MyApp/
+TestApp/

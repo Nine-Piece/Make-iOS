@@ -1,0 +1,47 @@
+# Xcode
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Tuist
+.tuist-bin
+.tuist-build
+.build/
+Derived/
+Dependencies/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+
+# CocoaPods
+Pods/
+*.xcworkspace
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Coverage
+*.gcno
+*.gcda
+*.profraw
+*.profdata
+xcov_report/
+
+# Others
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+*.iml

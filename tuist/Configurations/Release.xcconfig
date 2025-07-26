@@ -1,0 +1,36 @@
+//
+//  Release.xcconfig
+//
+//  Release configuration settings
+//
+
+// Swift Compiler - Custom Flags
+OTHER_SWIFT_FLAGS = $(inherited) -D RELEASE
+
+// Swift Compiler - Optimization
+SWIFT_OPTIMIZATION_LEVEL = -O
+
+// Deployment
+ENABLE_TESTABILITY = NO
+ONLY_ACTIVE_ARCH = NO
+
+// Asset Catalog Compiler
+ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES
+
+// Build Options
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym
+
+// Signing
+CODE_SIGN_IDENTITY = Apple Distribution
+CODE_SIGN_STYLE = Manual
+
+// Custom Flags
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) RELEASE=1
+
+// Strip
+DEPLOYMENT_POSTPROCESSING = YES
+STRIP_INSTALLED_PRODUCT = YES
+STRIP_STYLE = non-global
+
+// Bitcode
+ENABLE_BITCODE = NO

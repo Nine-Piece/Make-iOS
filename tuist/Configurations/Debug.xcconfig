@@ -1,0 +1,28 @@
+//
+//  Debug.xcconfig
+//
+//  Debug configuration settings
+//
+
+// Swift Compiler - Custom Flags
+OTHER_SWIFT_FLAGS = $(inherited) -D DEBUG
+
+// Swift Compiler - Optimization
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+
+// Deployment
+ENABLE_TESTABILITY = YES
+ONLY_ACTIVE_ARCH = YES
+
+// Asset Catalog Compiler
+ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES
+
+// Build Options
+DEBUG_INFORMATION_FORMAT = dwarf
+
+// Signing
+CODE_SIGN_IDENTITY = Apple Development
+CODE_SIGN_STYLE = Automatic
+
+// Custom Flags
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) DEBUG=1
